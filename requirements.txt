@@ -4,3 +4,4 @@ sklearn
 pandas
 requests
 matplotlib
+gunicorn
