@@ -1,7 +1,7 @@
 ## API-Covid-19-Analytics
 API untuk mengetahui informasi statistik dan prediksi dari kasus Covid-19.
 
-[![GitHub version](https://img.shields.io/badge/version-0.1.0-yellow.svg)](https://github.com/cacadosman/API-Covid-19-Analytics/)
+[![GitHub version](https://img.shields.io/badge/version-0.2.0-yellow.svg)](https://github.com/cacadosman/API-Covid-19-Analytics/)
 [![GitHub issues](https://img.shields.io/github/issues/cacadosman/api-covid-19-analytics)](https://github.com/cacadosman/API-Covid-19-Analytics/issues)
 [![GitHub license](https://img.shields.io/badge/license-MIT-red.svg)](https://github.com/cacadosman/API-Covid-19-Analytics/blob/master/LICENSE)
 
