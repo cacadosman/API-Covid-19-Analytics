@@ -38,4 +38,5 @@ def predict():
         data=data
     )
 
-app.run()
+if __name__ == '__main__':
+    app.run(threaded=True, port=5000)
