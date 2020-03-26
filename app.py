@@ -5,6 +5,8 @@ import requests
 import json
 from flask import Flask
 from flask import jsonify
+from datetime import datetime
+from datetime import timedelta
 
 from sklearn.linear_model import Ridge
 from sklearn.preprocessing import PolynomialFeatures
@@ -16,22 +18,27 @@ def getData():
     r = requests.get("https://indonesia-covid-19.mathdro.id/api/harian")
     json_data = r.json()['data']
     df = pd.DataFrame(eval(json.dumps(json_data)))
-    return df[['harike']], df['jumlahKasusKumulatif']
+    return df[['harike']], df['jumlahKasusKumulatif'], df['tanggal']
 
 @app.route('/api/v1/predict/', methods=['GET'])
 def predict():
-    X, y = getData()
+    X, y, dates = getData()
     model = make_pipeline(PolynomialFeatures(4), Ridge())
     model.fit(X, y)
 
-    # Predict for next 3 days
-    days = range(len(X)+1, len(X)+4)
+    # Predict for next 5 days
+    days = range(len(X)+1, len(X)+6)
     y_pred = model.predict([[i] for i in days])
 
-    data = {}
-    data['from'] = days[0]
-    data['to'] = days[-1]
-    data['values'] = [int(i) for i in y_pred]
+    lastDate = datetime.fromtimestamp(list(dates)[-1]//1000)
+    
+    data = []
+    for i in range(5):
+        case = {}
+        date = (lastDate + timedelta(days=(i+1))).strftime("%d/%m/%Y")
+        case['date'] = date
+        case['value'] = int(round(y_pred[i]))
+        data += [case]    
 
     return jsonify(
         success=True,
