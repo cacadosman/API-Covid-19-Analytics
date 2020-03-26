@@ -5,6 +5,9 @@ API untuk mengetahui informasi statistik dan prediksi dari kasus Covid-19.
 [![GitHub issues](https://img.shields.io/github/issues/cacadosman/api-covid-19-analytics)](https://github.com/cacadosman/API-Covid-19-Analytics/issues)
 [![GitHub license](https://img.shields.io/badge/license-MIT-red.svg)](https://github.com/cacadosman/API-Covid-19-Analytics/blob/master/LICENSE)
 
+### Base URL
+https://api-covid-19-analytics.herokuapp.com
+
 ### List API
 
 #### Get prediction of cumulative cases for next 5 days in Indonesia
