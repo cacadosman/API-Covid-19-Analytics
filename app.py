@@ -17,7 +17,8 @@ app = Flask(__name__)
 def getData():
     r = requests.get("https://indonesia-covid-19.mathdro.id/api/harian")
     json_data = r.json()['data']
-    df = pd.DataFrame(eval(json.dumps(json_data)))
+    data = eval(json.dumps(json_data).replace('null', 'None'))
+    df = pd.DataFrame(data)
     return df[['harike']], df['jumlahKasusKumulatif'], df['tanggal']
 
 @app.route('/api/v1/predict/', methods=['GET'])
