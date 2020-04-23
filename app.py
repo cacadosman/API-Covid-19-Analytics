@@ -10,6 +10,7 @@ from datetime import timedelta
 
 from sklearn.linear_model import Ridge
 from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
 from sklearn.pipeline import make_pipeline
 
 app = Flask(__name__)
@@ -26,7 +27,8 @@ def getData():
 @app.route('/api/v1/predict/', methods=['GET'])
 def predict():
     X, y, dates = getData()
-    model = make_pipeline(PolynomialFeatures(4), Ridge())
+    poly_reg = PolynomialFeatures(degree = 2)
+    model = make_pipeline(PolynomialFeatures(10), LinearRegression())
     model.fit(X, y)
 
     # Predict for next 5 days
